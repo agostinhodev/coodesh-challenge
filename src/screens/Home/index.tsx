@@ -31,6 +31,7 @@ const Home: React.FC = () => {
             }
             keyExtractor={(user: User) => user.login.uuid}
             renderItem={(user: User) => <UserItem data={user} />}
+            ListEmptyComponent={<></>}
         />
     );
 };
