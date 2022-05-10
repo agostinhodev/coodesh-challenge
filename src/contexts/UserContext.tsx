@@ -35,7 +35,7 @@ export const UserProvider: React.FC = ({ children }) => {
             .then(response => {
                 const { data } = response;
                 const usersCopy = { ...users };
-                usersCopy.results.unshift(...data.results);
+                usersCopy.results.push(...data.results);
                 setUsers(usersCopy);
             })
             .finally(() => setIsFetchingData(false));
