@@ -7,7 +7,7 @@ export default {
     splash: {
         image: 'src/assets/images/splash.png',
         resizeMode: 'contain',
-        backgroundColor: '#003461',
+        backgroundColor: '#0083CA',
     },
     primaryColor: '#003461',
     updates: {
