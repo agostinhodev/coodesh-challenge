@@ -26,6 +26,7 @@ export const UserProvider: React.FC = ({ children }) => {
 
     const fetch = async (): Promise<AxiosResponse<UserResponse>> => {
         setIsFetchingData(true);
+        setSearch(null);
 
         let response: Promise<AxiosResponse<UserResponse>> = Promise.resolve(
             await api.get<UserResponse>('', { params: { results } }),
