@@ -13,6 +13,11 @@ interface UserContextData {
     setSearch(value: string | null): void;
     isFilterModalOpen: boolean;
     setIsFilterModalOpen(option: boolean): void;
+    gender: string;
+    setGender(option: string | null): void;
+    availableNationality: Array<string>;
+    nat: string | null;
+    setNat(option: string | null): void;
 }
 
 const UserContext = createContext<UserContextData>({} as UserContextData);
@@ -25,14 +30,36 @@ export const UserProvider: React.FC = ({ children }) => {
     const [results, setResults] = useState<number>(50);
     const [currentUser, setCurrentUser] = useState<User | null>(null);
     const [search, setSearch] = useState<string | null>(null);
+    const [gender, setGender] = useState<string | null>(null);
+    const [nat, setNat] = useState<string | null>(null);
     const [isFilterModalOpen, setIsFilterModalOpen] = useState<boolean>(false);
+    const availableNationality = [
+        'AU',
+        'BR',
+        'CA',
+        'CH',
+        'DE',
+        'DK',
+        'ES',
+        'FI',
+        'FR',
+        'GB',
+        'IE',
+        'IR',
+        'NL',
+        'NZ',
+        'TR',
+        'US',
+        'NO',
+        'US',
+    ];
 
     const fetch = async (): Promise<AxiosResponse<UserResponse>> => {
         setIsFetchingData(true);
         setSearch(null);
 
         let response: Promise<AxiosResponse<UserResponse>> = Promise.resolve(
-            await api.get<UserResponse>('', { params: { results } }),
+            await api.get<UserResponse>('', { params: { results, gender, nat } }),
         );
 
         response
@@ -59,6 +86,11 @@ export const UserProvider: React.FC = ({ children }) => {
                 setSearch,
                 isFilterModalOpen,
                 setIsFilterModalOpen,
+                gender,
+                setGender,
+                availableNationality,
+                nat,
+                setNat,
             }}
         >
             {children}

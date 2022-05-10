@@ -3,6 +3,7 @@ import Constants from 'expo-constants';
 import React from 'react';
 import { Keyboard, Modal, TouchableOpacity } from 'react-native';
 import { useUser } from '../../../contexts/UserContext';
+import Button from '../Button';
 import Input from '../Input';
 import Logo from '../Logo';
 import {
@@ -10,13 +11,26 @@ import {
     ButtonFilter,
     CloseView,
     Container,
+    Description,
     FormView,
+    PersonalizatedPicker,
     Total,
+    ViewButton,
+    ViewFilters,
     ViewModalFilters,
 } from './styles';
 
 const Header: React.FC = () => {
-    const { search, setSearch, users, isFilterModalOpen, setIsFilterModalOpen } = useUser();
+    const {
+        search,
+        setSearch,
+        users,
+        isFilterModalOpen,
+        setIsFilterModalOpen,
+        gender,
+        setGender,
+        availableNationality,
+    } = useUser();
 
     return (
         <>
@@ -69,6 +83,48 @@ const Header: React.FC = () => {
                             />
                         </ButtonClose>
                     </CloseView>
+
+                    <ViewFilters
+                        contentContainerStyle={{
+                            justifyContent: 'flex-start',
+                            alignItems: 'flex-start',
+                        }}
+                    >
+                        <Description>Select a Gender</Description>
+                        <PersonalizatedPicker
+                            selectedValue={gender}
+                            onValueChange={(itemValue: string) => setGender(itemValue)}
+                        >
+                            <PersonalizatedPicker.Item label="Male" value="male" />
+                            <PersonalizatedPicker.Item label="Female" value="female" />
+                        </PersonalizatedPicker>
+                    </ViewFilters>
+
+                    <ViewFilters
+                        contentContainerStyle={{
+                            justifyContent: 'flex-start',
+                            alignItems: 'flex-start',
+                        }}
+                    >
+                        <Description>Select a Nationality</Description>
+                        <PersonalizatedPicker
+                            selectedValue={gender}
+                            onValueChange={(itemValue: string) => setGender(itemValue)}
+                        >
+                            {availableNationality.length > 0 &&
+                                availableNationality.map((item, index) => (
+                                    <PersonalizatedPicker.Item
+                                        key={index}
+                                        label={item}
+                                        value={item}
+                                    />
+                                ))}
+                        </PersonalizatedPicker>
+                    </ViewFilters>
+
+                    <ViewButton>
+                        <Button title="Apply Filter" />
+                    </ViewButton>
                 </ViewModalFilters>
             </Modal>
         </>

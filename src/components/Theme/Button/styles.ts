@@ -10,7 +10,7 @@ export const ButtonPersonalizated = styled.TouchableOpacity`
     height: 45px;
     justify-content: center;
     align-items: center;
-
+  
 `;
 
 export const ButtonPersonalizatedText = styled.Text`

@@ -1,5 +1,7 @@
+import { Picker } from '@react-native-picker/picker';
 import Constants from "expo-constants";
 import styled from "styled-components/native";
+
 
 export const Container = styled.View`
     justify-content: center;
@@ -29,9 +31,9 @@ export const Total = styled.Text`
 export const ViewModalFilters = styled.View`
     display: flex;
     flex: 1;
-    margin-top: 150px;
+    margin-top: 300px;
     background-color: ${Constants?.manifest?.extra?.colors?.six};
-    justify-content:flex-start ;
+    justify-content:flex-start;
     align-items: center;
 `;
 
@@ -45,3 +47,23 @@ export const CloseView = styled.View`
 `;
 
 export const ButtonClose = styled.TouchableOpacity``;
+
+export const ViewFilters = styled.ScrollView`
+    padding: 15px;
+`;
+
+export const Description = styled.Text`
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: ${Constants.manifest?.extra?.colors.one};
+`;
+
+export const PersonalizatedPicker = styled(Picker).attrs({})`
+    min-width: 100%;
+    border-width: 1px;
+    background-color:  ${Constants.manifest?.extra?.colors.seven};
+`;
+
+export const ViewButton = styled.View`
+    min-width: 100%;
+`;
