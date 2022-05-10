@@ -1,14 +1,19 @@
 import React from 'react';
 import { useUser } from '../../../contexts/UserContext';
+import LoadingActivity from '../../Loading';
 import Button from '../Button';
 import PersonalizatedModal from '../Modal';
 
 const Footer: React.FC = () => {
-    const { currentUser, fetch } = useUser();
+    const { currentUser, fetch, isFetchingData } = useUser();
 
     return (
         <>
-            <Button onPress={() => fetch()} title="Test" />
+            {isFetchingData ? (
+                <LoadingActivity title="Loading more..." />
+            ) : (
+                <Button onPress={() => fetch()} title="Tap to load more..." />
+            )}
             {currentUser && <PersonalizatedModal />}
         </>
     );
