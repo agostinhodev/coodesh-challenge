@@ -17,7 +17,9 @@ const UserContext = createContext<UserContextData>({} as UserContextData);
 
 export const UserProvider: React.FC = ({ children }) => {
     const [isFetchingData, setIsFetchingData] = useState<boolean>(false);
-    const [users, setUsers] = useState<UserResponse>({} as UserResponse);
+    const [users, setUsers] = useState<UserResponse>({
+        results: [],
+    } as UserResponse);
     const [results, setResults] = useState<number>(50);
     const [currentUser, setCurrentUser] = useState<User | null>(null);
     const [search, setSearch] = useState<string | null>(null);
@@ -32,7 +34,9 @@ export const UserProvider: React.FC = ({ children }) => {
         response
             .then(response => {
                 const { data } = response;
-                setUsers(data);
+                const usersCopy = { ...users };
+                usersCopy.results.unshift(...data.results);
+                setUsers(usersCopy);
             })
             .finally(() => setIsFetchingData(false));
 

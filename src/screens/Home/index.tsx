@@ -1,7 +1,8 @@
 import { AxiosError } from 'axios';
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
+import { RefreshControl } from 'react-native';
+import Footer from '../../components/Theme/Footer';
 import Header from '../../components/Theme/Header';
-import PersonalizatedModal from '../../components/Theme/Modal';
 import UserItem from '../../components/UserItem';
 import { useUser } from '../../contexts/UserContext';
 import { User } from '../../models/Response/UserResponse';
@@ -16,10 +17,14 @@ const Home: React.FC = () => {
         });
     }, []);
 
+    const onRefresh = useCallback(() => {
+        fetch();
+    }, []);
+
     return (
         <Container
             ListHeaderComponent={<Header />}
-            ListFooterComponent={currentUser && <PersonalizatedModal />}
+            ListFooterComponent={<Footer />}
             data={
                 search && search.length > 0
                     ? users?.results.filter(
@@ -32,6 +37,7 @@ const Home: React.FC = () => {
             keyExtractor={(user: User) => user.login.uuid}
             renderItem={(user: User) => <UserItem data={user} />}
             ListEmptyComponent={<></>}
+            refreshControl={<RefreshControl refreshing={isFetchingData} onRefresh={onRefresh} />}
         />
     );
 };

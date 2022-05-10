@@ -5,10 +5,10 @@ import { Keyboard, TouchableOpacity } from 'react-native';
 import { useUser } from '../../../contexts/UserContext';
 import Input from '../Input';
 import Logo from '../Logo';
-import { Container } from './styles';
+import { Container, Total } from './styles';
 
 const Header: React.FC = () => {
-    const { search, setSearch } = useUser();
+    const { search, setSearch, users } = useUser();
 
     return (
         <Container>
@@ -29,6 +29,8 @@ const Header: React.FC = () => {
                     </TouchableOpacity>
                 }
             />
+
+            <Total>Total of patients: {users.results.length}</Total>
         </Container>
     );
 };
