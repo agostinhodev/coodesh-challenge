@@ -1,6 +1,7 @@
 import { AxiosError } from 'axios';
 import React, { useEffect } from 'react';
 import Input from '../../components/Theme/Input';
+import PersonalizatedModal from '../../components/Theme/Modal';
 import UserItem from '../../components/UserItem';
 import { useUser } from '../../contexts/UserContext';
 import { User } from '../../models/Response/UserResponse';
@@ -18,6 +19,7 @@ const Home: React.FC = () => {
     return (
         <Container
             ListHeaderComponent={<Input keyboardType="default" autoCapitalize="none" />}
+            ListFooterComponent={<PersonalizatedModal />}
             data={users?.results}
             keyExtractor={(user: User) => user.login.uuid}
             renderItem={(user: User) => <UserItem data={user} />}
