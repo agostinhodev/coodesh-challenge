@@ -42,6 +42,7 @@ export default {
             four: '#F26522',
             five: '#FCAF17',
             six: '#FFFFFF',
+            seven: '#DCDCDC',
         },
     },
 };
