@@ -1,5 +1,6 @@
 import moment from 'moment';
 import React from 'react';
+import { useUser } from '../../contexts/UserContext';
 import { User } from '../../models/Response/UserResponse';
 import {
     Title,
@@ -20,10 +21,12 @@ interface UserItemProps {
 }
 
 const UserItem: React.FC<UserItemProps> = ({ data }) => {
+    const { setCurrentUser } = useUser();
+
     const user = data.item;
 
     return (
-        <UserButton>
+        <UserButton onPress={() => setCurrentUser(user)}>
             <ViewImage>
                 <UserImage source={{ uri: user.picture.medium }} />
             </ViewImage>
