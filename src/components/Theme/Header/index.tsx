@@ -5,7 +5,15 @@ import { Keyboard, Modal, TouchableOpacity } from 'react-native';
 import { useUser } from '../../../contexts/UserContext';
 import Input from '../Input';
 import Logo from '../Logo';
-import { ButtonFilter, Container, FormView, Total } from './styles';
+import {
+    ButtonClose,
+    ButtonFilter,
+    CloseView,
+    Container,
+    FormView,
+    Total,
+    ViewModalFilters,
+} from './styles';
 
 const Header: React.FC = () => {
     const { search, setSearch, users, isFilterModalOpen, setIsFilterModalOpen } = useUser();
@@ -47,10 +55,22 @@ const Header: React.FC = () => {
 
             <Modal
                 animationType="slide"
-                transparent={false}
+                transparent={true}
                 visible={isFilterModalOpen}
                 onRequestClose={() => setIsFilterModalOpen(false)}
-            ></Modal>
+            >
+                <ViewModalFilters>
+                    <CloseView>
+                        <ButtonClose onPress={() => setIsFilterModalOpen(false)}>
+                            <AntDesign
+                                size={24}
+                                color={Constants.manifest.extra.colors.four}
+                                name="closecircle"
+                            />
+                        </ButtonClose>
+                    </CloseView>
+                </ViewModalFilters>
+            </Modal>
         </>
     );
 };
