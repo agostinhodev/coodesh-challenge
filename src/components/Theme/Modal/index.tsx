@@ -75,6 +75,15 @@ const PersonalizatedModal: React.FC = () => {
                             <Title>Address: </Title>
                             <Value>{`${address.street.name}, ${address.street.number}\nCity: ${address.city}\nState: ${address.state}\nCountry: ${address.country}\nZIP: ${address.postcode}`}</Value>
                         </ViewContent>
+
+                        <ViewContent>
+                            <Title>ID: </Title>
+                            <Value>
+                                {currentUser.id && currentUser.id.name && currentUser.id.value
+                                    ? `${currentUser.id.name} ${currentUser.id.value}`
+                                    : 'Empty'}
+                            </Value>
+                        </ViewContent>
                     </ViewUserDetails>
                 </ViewModal>
             )}
