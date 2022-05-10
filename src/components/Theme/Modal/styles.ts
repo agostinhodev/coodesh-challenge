@@ -10,6 +10,18 @@ export const ViewModal = styled.View`
     align-items: center;
 `;
 
+export const CloseView = styled.View`
+    margin-top: -25px;
+    justify-content: flex-end;
+    align-items:flex-end ;
+    width: 100%;
+    z-index: -1;
+    padding: 10px;
+`;
+
+export const ButtonClose = styled.TouchableOpacity``;
+
+
 export const ViewModalImage = styled.View`
     margin-top: -50px;
 `;
@@ -20,13 +32,10 @@ export const UserImageDetails = styled.Image`
     border-radius: 50px;
 `;
 
-export const ViewUserDetails = styled.View`
+export const ViewUserDetails = styled.ScrollView`
     padding: 15px;
     display: flex;
     flex: 1;
-    justify-content: flex-start;
-    align-items:flex-start;
- 
 `;
 
 export const UserName = styled.Text`

@@ -1,8 +1,12 @@
+import { AntDesign } from '@expo/vector-icons';
+import Constants from 'expo-constants';
 import moment from 'moment';
 import React from 'react';
 import { Modal } from 'react-native';
 import { useUser } from '../../../contexts/UserContext';
 import {
+    ButtonClose,
+    CloseView,
     Title,
     UserImageDetails,
     UserName,
@@ -30,9 +34,23 @@ const PersonalizatedModal: React.FC = () => {
                     <ViewModalImage>
                         <UserImageDetails source={{ uri: currentUser.picture.medium }} />
                     </ViewModalImage>
+                    <CloseView>
+                        <ButtonClose onPress={() => setCurrentUser(null)}>
+                            <AntDesign
+                                size={24}
+                                color={Constants.manifest.extra.colors.four}
+                                name="closecircle"
+                            />
+                        </ButtonClose>
+                    </CloseView>
 
                     <UserName>{`${currentUser.name.title} ${currentUser.name.first} ${currentUser.name.last}`}</UserName>
-                    <ViewUserDetails>
+                    <ViewUserDetails
+                        contentContainerStyle={{
+                            justifyContent: 'flex-start',
+                            alignItems: 'flex-start',
+                        }}
+                    >
                         <ViewContent>
                             <Title>Email: </Title>
                             <Value>{currentUser.email}</Value>
