@@ -9,6 +9,8 @@ interface UserContextData {
     isFetchingData: boolean;
     currentUser: User | null;
     setCurrentUser(user: User | null): void;
+    search: string | null;
+    setSearch(value: string | null): void;
 }
 
 const UserContext = createContext<UserContextData>({} as UserContextData);
@@ -18,6 +20,7 @@ export const UserProvider: React.FC = ({ children }) => {
     const [users, setUsers] = useState<UserResponse>({} as UserResponse);
     const [results, setResults] = useState<number>(50);
     const [currentUser, setCurrentUser] = useState<User | null>(null);
+    const [search, setSearch] = useState<string | null>(null);
 
     const fetch = async (): Promise<AxiosResponse<UserResponse>> => {
         setIsFetchingData(true);
@@ -37,7 +40,9 @@ export const UserProvider: React.FC = ({ children }) => {
     };
 
     return (
-        <UserContext.Provider value={{ users, fetch, isFetchingData, currentUser, setCurrentUser }}>
+        <UserContext.Provider
+            value={{ users, fetch, isFetchingData, currentUser, setCurrentUser, search, setSearch }}
+        >
             {children}
         </UserContext.Provider>
     );

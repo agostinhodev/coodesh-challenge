@@ -12,6 +12,7 @@ export const Container = styled(KeyboardAwareFlatList).attrs({
     enabled: true
 })`
     background-color: ${Constants?.manifest?.extra?.colors?.one}; 
-    padding-top: 50px;
+    padding-top: 100px;
     padding-bottom: 100px;
+    padding: 10px;
 `;
