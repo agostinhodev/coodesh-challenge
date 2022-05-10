@@ -15,6 +15,7 @@ const Header: React.FC = () => {
                 autoCapitalize="words"
                 value={search}
                 onChangeText={value => setSearch(value)}
+                placeholder="Enter the patient's name to search"
             />
         </Container>
     );
