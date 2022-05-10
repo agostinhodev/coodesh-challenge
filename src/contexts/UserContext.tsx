@@ -11,6 +11,8 @@ interface UserContextData {
     setCurrentUser(user: User | null): void;
     search: string | null;
     setSearch(value: string | null): void;
+    isFilterModalOpen: boolean;
+    setIsFilterModalOpen(option: boolean): void;
 }
 
 const UserContext = createContext<UserContextData>({} as UserContextData);
@@ -23,6 +25,7 @@ export const UserProvider: React.FC = ({ children }) => {
     const [results, setResults] = useState<number>(50);
     const [currentUser, setCurrentUser] = useState<User | null>(null);
     const [search, setSearch] = useState<string | null>(null);
+    const [isFilterModalOpen, setIsFilterModalOpen] = useState<boolean>(false);
 
     const fetch = async (): Promise<AxiosResponse<UserResponse>> => {
         setIsFetchingData(true);
@@ -46,7 +49,17 @@ export const UserProvider: React.FC = ({ children }) => {
 
     return (
         <UserContext.Provider
-            value={{ users, fetch, isFetchingData, currentUser, setCurrentUser, search, setSearch }}
+            value={{
+                users,
+                fetch,
+                isFetchingData,
+                currentUser,
+                setCurrentUser,
+                search,
+                setSearch,
+                isFilterModalOpen,
+                setIsFilterModalOpen,
+            }}
         >
             {children}
         </UserContext.Provider>

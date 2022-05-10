@@ -9,8 +9,6 @@ export const Container = styled.View`
 
 export const FormView = styled.View`
     flex-direction: row;
-    display: flex;
-    flex: 1;
     justify-content: center;
     align-items:center ;
     padding-left: 20px;
