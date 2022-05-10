@@ -1,12 +1,14 @@
 import { AxiosResponse } from 'axios';
 import { createContext, useContext, useState } from 'react';
-import { UserResponse } from '../models/Response/UserResponse';
+import { User, UserResponse } from '../models/Response/UserResponse';
 import api from '../services/api';
 
 interface UserContextData {
     users: UserResponse;
     fetch(): Promise<AxiosResponse<UserResponse>>;
     isFetchingData: boolean;
+    currentUser: User | null;
+    setCurrentUser(user: User | null): void;
 }
 
 const UserContext = createContext<UserContextData>({} as UserContextData);
@@ -15,6 +17,7 @@ export const UserProvider: React.FC = ({ children }) => {
     const [isFetchingData, setIsFetchingData] = useState<boolean>(false);
     const [users, setUsers] = useState<UserResponse>({} as UserResponse);
     const [results, setResults] = useState<number>(50);
+    const [currentUser, setCurrentUser] = useState<User | null>(null);
 
     const fetch = async (): Promise<AxiosResponse<UserResponse>> => {
         setIsFetchingData(true);
@@ -34,7 +37,7 @@ export const UserProvider: React.FC = ({ children }) => {
     };
 
     return (
-        <UserContext.Provider value={{ users, fetch, isFetchingData }}>
+        <UserContext.Provider value={{ users, fetch, isFetchingData, currentUser, setCurrentUser }}>
             {children}
         </UserContext.Provider>
     );
