@@ -4,14 +4,24 @@ import styled from "styled-components/native";
 export const ButtonPersonalizated = styled.TouchableOpacity`
 
     background-color: ${Constants.manifest.extra.colors.five};
-    margin: 20px;
-    margin-bottom: 40px;
+
     border-radius: 10px;
     height: 45px;
     justify-content: center;
     align-items: center;
   
 `;
+export const ButtonPersonalizatedOutline = styled.TouchableOpacity`
+
+    border-color: ${Constants.manifest.extra.colors.five};
+    border-width: 2px;
+    border-radius: 10px;
+    height: 45px;
+    justify-content: center;
+    align-items: center;
+  
+`;
+
 
 export const ButtonPersonalizatedText = styled.Text`
 

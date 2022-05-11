@@ -124,6 +124,19 @@ const Header: React.FC = () => {
                                     setIsFilterModalOpen(false);
                                 }}
                             />
+
+                            {(nat !== null || gender !== null) && (
+                                <Button
+                                    title="Clear Filters"
+                                    type="outline"
+                                    onPress={() => {
+                                        setGender(null);
+                                        setNat(null);
+                                        fetch('filter');
+                                        setIsFilterModalOpen(false);
+                                    }}
+                                />
+                            )}
                         </ViewButton>
                     </ViewFilters>
                 </ViewModalFilters>

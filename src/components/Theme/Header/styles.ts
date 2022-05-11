@@ -31,7 +31,7 @@ export const Total = styled.Text`
 export const ViewModalFilters = styled.View`
     display: flex;
     flex: 1;
-    margin-top: 150px;
+    margin-top: 100px;
     background-color: ${Constants?.manifest?.extra?.colors?.six};
     justify-content:flex-start;
     align-items: center;
@@ -67,4 +67,7 @@ export const PersonalizatedPicker = styled(Picker).attrs({})`
 
 export const ViewButton = styled.View`
     min-width: 100%;
+    min-height: 100px;
+    justify-content: space-between;
+    margin-top: 30px;
 `;
