@@ -96,11 +96,11 @@ const Header: React.FC = () => {
                         <Description>Select a Gender</Description>
                         <PersonalizatedPicker
                             selectedValue={gender}
-                            onValueChange={(itemValue: string) => setGender(itemValue)}
+                            onValueChange={(itemValue: string) =>
+                                itemValue !== '0' && setGender(itemValue)
+                            }
                         >
-                            {gender === null && (
-                                <PersonalizatedPicker.Item label="Select Gender" value={null} />
-                            )}
+                            <PersonalizatedPicker.Item label="..:: Select Gender ::.." value="0" />
                             <PersonalizatedPicker.Item label="Male" value="male" />
                             <PersonalizatedPicker.Item label="Female" value="female" />
                         </PersonalizatedPicker>
@@ -108,11 +108,11 @@ const Header: React.FC = () => {
                         <Description>Select a Nationality</Description>
                         <PersonalizatedPicker
                             selectedValue={nat}
-                            onValueChange={(itemValue: string) => setNat(itemValue)}
+                            onValueChange={(itemValue: string) =>
+                                itemValue !== '0' && setNat(itemValue)
+                            }
                         >
-                            {nat === null && (
-                                <PersonalizatedPicker.Item label="Select NAT" value={null} />
-                            )}
+                            <PersonalizatedPicker.Item label="..:: Select NAT ::.." value="0" />
                             {availableNationality.length > 0 &&
                                 availableNationality.map((item, index) => (
                                     <PersonalizatedPicker.Item
