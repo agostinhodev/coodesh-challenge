@@ -140,7 +140,6 @@ const Header: React.FC = () => {
                                             setGender(null);
                                             setNat(null);
                                             fetch('filter');
-                                            setIsFilterModalOpen(false);
                                         }}
                                     />
                                 </>
