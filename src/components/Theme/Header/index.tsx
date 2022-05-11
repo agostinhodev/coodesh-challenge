@@ -119,9 +119,10 @@ const Header: React.FC = () => {
                         <ViewButton>
                             <Button
                                 title="Apply Filter"
-                                onPress={() =>
-                                    fetch('filter').finally(() => setIsFilterModalOpen(false))
-                                }
+                                onPress={() => {
+                                    fetch('filter');
+                                    setIsFilterModalOpen(false);
+                                }}
                             />
                         </ViewButton>
                     </ViewFilters>
