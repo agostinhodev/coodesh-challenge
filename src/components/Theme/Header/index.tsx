@@ -98,6 +98,9 @@ const Header: React.FC = () => {
                             selectedValue={gender}
                             onValueChange={(itemValue: string) => setGender(itemValue)}
                         >
+                            {gender === null && (
+                                <PersonalizatedPicker.Item label="Select Gender" value={null} />
+                            )}
                             <PersonalizatedPicker.Item label="Male" value="male" />
                             <PersonalizatedPicker.Item label="Female" value="female" />
                         </PersonalizatedPicker>
@@ -107,6 +110,9 @@ const Header: React.FC = () => {
                             selectedValue={nat}
                             onValueChange={(itemValue: string) => setNat(itemValue)}
                         >
+                            {nat === null && (
+                                <PersonalizatedPicker.Item label="Select NAT" value={null} />
+                            )}
                             {availableNationality.length > 0 &&
                                 availableNationality.map((item, index) => (
                                     <PersonalizatedPicker.Item
@@ -117,25 +123,27 @@ const Header: React.FC = () => {
                                 ))}
                         </PersonalizatedPicker>
                         <ViewButton>
-                            <Button
-                                title="Apply Filter"
-                                onPress={() => {
-                                    fetch('filter');
-                                    setIsFilterModalOpen(false);
-                                }}
-                            />
-
                             {(nat !== null || gender !== null) && (
-                                <Button
-                                    title="Clear Filters"
-                                    type="outline"
-                                    onPress={() => {
-                                        setGender(null);
-                                        setNat(null);
-                                        fetch('filter');
-                                        setIsFilterModalOpen(false);
-                                    }}
-                                />
+                                <>
+                                    <Button
+                                        title="Apply Filter"
+                                        onPress={() => {
+                                            fetch('filter');
+                                            setIsFilterModalOpen(false);
+                                        }}
+                                    />
+
+                                    <Button
+                                        title="Clear Filters"
+                                        type="outline"
+                                        onPress={() => {
+                                            setGender(null);
+                                            setNat(null);
+                                            fetch('filter');
+                                            setIsFilterModalOpen(false);
+                                        }}
+                                    />
+                                </>
                             )}
                         </ViewButton>
                     </ViewFilters>
