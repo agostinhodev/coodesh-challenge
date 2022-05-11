@@ -5,7 +5,7 @@ import api from '../services/api';
 
 interface UserContextData {
     users: UserResponse;
-    fetch(): Promise<AxiosResponse<UserResponse>>;
+    fetch(origin?: string): Promise<AxiosResponse<UserResponse>>;
     isFetchingData: boolean;
     currentUser: User | null;
     setCurrentUser(user: User | null): void;
@@ -54,7 +54,7 @@ export const UserProvider: React.FC = ({ children }) => {
         'US',
     ];
 
-    const fetch = async (): Promise<AxiosResponse<UserResponse>> => {
+    const fetch = async (origin?: string): Promise<AxiosResponse<UserResponse>> => {
         setIsFetchingData(true);
         setSearch(null);
 
@@ -65,9 +65,15 @@ export const UserProvider: React.FC = ({ children }) => {
         response
             .then(response => {
                 const { data } = response;
-                const usersCopy = { ...users };
-                usersCopy.results.push(...data.results);
-                setUsers(usersCopy);
+
+                if (origin === 'filter') {
+                    setUsers(data);
+                } else {
+                    const { data } = response;
+                    const usersCopy = { ...users };
+                    usersCopy.results.push(...data.results);
+                    setUsers(usersCopy);
+                }
             })
             .finally(() => setIsFetchingData(false));
 

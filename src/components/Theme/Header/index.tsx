@@ -30,6 +30,9 @@ const Header: React.FC = () => {
         gender,
         setGender,
         availableNationality,
+        nat,
+        setNat,
+        fetch,
     } = useUser();
 
     return (
@@ -98,18 +101,11 @@ const Header: React.FC = () => {
                             <PersonalizatedPicker.Item label="Male" value="male" />
                             <PersonalizatedPicker.Item label="Female" value="female" />
                         </PersonalizatedPicker>
-                    </ViewFilters>
 
-                    <ViewFilters
-                        contentContainerStyle={{
-                            justifyContent: 'flex-start',
-                            alignItems: 'flex-start',
-                        }}
-                    >
                         <Description>Select a Nationality</Description>
                         <PersonalizatedPicker
-                            selectedValue={gender}
-                            onValueChange={(itemValue: string) => setGender(itemValue)}
+                            selectedValue={nat}
+                            onValueChange={(itemValue: string) => setNat(itemValue)}
                         >
                             {availableNationality.length > 0 &&
                                 availableNationality.map((item, index) => (
@@ -120,11 +116,15 @@ const Header: React.FC = () => {
                                     />
                                 ))}
                         </PersonalizatedPicker>
+                        <ViewButton>
+                            <Button
+                                title="Apply Filter"
+                                onPress={() =>
+                                    fetch('filter').finally(() => setIsFilterModalOpen(false))
+                                }
+                            />
+                        </ViewButton>
                     </ViewFilters>
-
-                    <ViewButton>
-                        <Button title="Apply Filter" />
-                    </ViewButton>
                 </ViewModalFilters>
             </Modal>
         </>

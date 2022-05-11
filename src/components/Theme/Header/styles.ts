@@ -31,7 +31,7 @@ export const Total = styled.Text`
 export const ViewModalFilters = styled.View`
     display: flex;
     flex: 1;
-    margin-top: 300px;
+    margin-top: 150px;
     background-color: ${Constants?.manifest?.extra?.colors?.six};
     justify-content:flex-start;
     align-items: center;
@@ -55,6 +55,7 @@ export const ViewFilters = styled.ScrollView`
 export const Description = styled.Text`
     font-size: 16px;
     margin-bottom: 15px;
+    margin-top: 15px;
     color: ${Constants.manifest?.extra?.colors.one};
 `;
 
