@@ -4,6 +4,10 @@
 
 O app mobile desenvolvido neste code challenge busca resolver o problema da empresa Pharma Inc, a qual precisa de uma solução para visualizar os dados dos seus clientes
 
+## Fork
+
+Este projeto foi desenvolvido com base nas orientações dispostas neste link [Public Challenges / Mobile Challenge 🏅 · GitLab - Coodesh](https://lab.coodesh.com/public-challenges/mobile-challenge)
+
 ### Linguagem, Frameworks e tecnologias
 
 Este projeto foi construído utilizando as seguintes tecnologias:
